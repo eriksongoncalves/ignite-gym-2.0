@@ -34,6 +34,13 @@
     "prettier"
   ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 100,
+        "singleQuote": false
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
@@ -42,6 +49,10 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-console": "warn",
     "@typescript-eslint/no-empty-function": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {}
+    ]
   }
 }

@@ -1,5 +1,9 @@
-import { Text } from 'react-native'
+import { View, Text } from 'react-native'
 
 export function SignIn() {
-  return <Text>SignIn</Text>
+  return (
+    <View className="flex-1 items-center justify-center bg-black">
+      <Text className="text-white text-2xl font-bold">SignIn</Text>
+    </View>
+  )
 }

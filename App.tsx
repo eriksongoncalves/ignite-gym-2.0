@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 import {
   useFonts,
   Roboto_400Regular,
@@ -11,20 +13,24 @@ import Routes from '@src/routes'
 SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  const [loaded, error] = useFonts({
+  const [fontsLoaded, error] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
   })
 
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync()
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync()
     }
-  }, [loaded, error])
+  }, [fontsLoaded])
 
-  if (!loaded && !error) {
+  if (!fontsLoaded && !error) {
     return null
   }
 
-  return <Routes />
+  return (
+    <GestureHandlerRootView onLayout={onLayoutRootView} className="flex-1">
+      <Routes />
+    </GestureHandlerRootView>
+  )
 }
