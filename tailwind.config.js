@@ -7,14 +7,15 @@ module.exports = {
       robotoBold: ['Roboto_700Bold']
     },
     fontSize: {
-      'text-base': '14px',
+      base: '16px',
       xs: '12px',
       sm: '14px',
-      lg: '16px',
-      xl: '18px',
+      lg: '18px',
+      xl: '20x',
       '2xl': '24px'
     },
     colors: {
+      transparent: 'transparent',
       white: '#ffffff',
       black: '#000000',
       gray: {
@@ -29,6 +30,9 @@ module.exports = {
       green: {
         500: '#00b37e',
         700: '#00875f'
+      },
+      red: {
+        600: '#F75A68'
       }
     },
     extend: {}

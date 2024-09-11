@@ -5,5 +5,7 @@
   "arrowParens": "avoid",
   "semi": false,
   "bracketSpacing": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv"]
 }

@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { StatusBar } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
@@ -30,6 +31,8 @@ export default function App() {
 
   return (
     <GestureHandlerRootView onLayout={onLayoutRootView} className="flex-1">
+      <StatusBar translucent barStyle={'light-content'} />
+
       <Routes />
     </GestureHandlerRootView>
   )
