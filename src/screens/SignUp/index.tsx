@@ -6,26 +6,21 @@ import background from '@assets/images/background.png'
 import Logo from '@assets/images/logo.svg'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
-import { SignInFormData, signInFormResolver } from './validationSchema'
+import { SignUpFormData, signUpFormResolver } from './validationSchema'
 
-export function SignIn() {
+export function SignUp() {
   const navigation = useNavigation()
-
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors }
-  } = useForm<SignInFormData>({
-    resolver: signInFormResolver
+  } = useForm<SignUpFormData>({
+    resolver: signUpFormResolver
   })
 
-  function onSubmit(data: SignInFormData) {
-    console.log(data)
-  }
-
-  function handleNavigateToSignUp() {
-    navigation.navigate('signup')
+  function onSubmit(data: SignUpFormData) {
+    console.log('>>> SignUp', data)
   }
 
   return (
@@ -33,7 +28,7 @@ export function SignIn() {
       <ImageBackground
         source={background}
         resizeMode="cover"
-        className={`h-[70%] flex-1 pl-10 pr-10`}
+        className={`h-[60%] flex-1 pl-10 pr-10`}
       >
         <SafeAreaView className="flex-1">
           <View className="mt-[55px] items-center">
@@ -43,10 +38,19 @@ export function SignIn() {
             </Text>
           </View>
 
-          <View className="mt-[200px] w-full">
+          <View className="mt-[100px] w-full">
             <Text className="mb-4 text-center font-robotoBold text-xl text-white">
-              Acesse sua conta
+              Crie sua conta
             </Text>
+
+            <Input
+              {...register('name')}
+              autoFocus
+              placeholder="Nome"
+              className="mb-4"
+              onChangeText={value => setValue('name', value)}
+              errorMessage={errors.name?.message}
+            />
 
             <Input
               {...register('email')}
@@ -54,7 +58,6 @@ export function SignIn() {
               keyboardType="email-address"
               className="mb-4"
               onChangeText={value => setValue('email', value)}
-              autoFocus
               errorMessage={errors.email?.message}
             />
 
@@ -67,25 +70,30 @@ export function SignIn() {
               errorMessage={errors.password?.message}
             />
 
+            <Input
+              {...register('confirm_password')}
+              placeholder="Confirme a senha"
+              className="mb-4"
+              secureTextEntry
+              onChangeText={value => setValue('confirm_password', value)}
+              errorMessage={errors.confirm_password?.message}
+            />
+
             <Button onPress={handleSubmit(onSubmit)}>
               <Text className="font-robotoBold text-base text-white">
-                Acessar
+                Criar e acessar
               </Text>
             </Button>
           </View>
 
           <View className="mt-auto w-full">
-            <Text className="mb-3 text-center font-robotoRegular text-base text-white">
-              Ainda não tem acesso?
-            </Text>
-
             <Button
               variant="outline"
-              onPress={handleNavigateToSignUp}
+              onPress={navigation.goBack}
               className="mb-4"
             >
               <Text className="font-robotoRegular text-base text-green-500">
-                Ainda não tem acesso?
+                Voltar para o login
               </Text>
             </Button>
           </View>

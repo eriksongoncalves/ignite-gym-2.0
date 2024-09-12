@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { SignIn } from '@src/screens/SignIn'
+import { SignUp } from '@src/screens/SignUp'
 
 const Stack = createNativeStackNavigator()
 
@@ -10,8 +11,13 @@ function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="SignIn"
+          name="signin"
           component={SignIn}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="signup"
+          component={SignUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
