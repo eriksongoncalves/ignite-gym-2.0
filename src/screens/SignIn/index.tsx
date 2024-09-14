@@ -1,6 +1,6 @@
 import { ImageBackground, View, Text, SafeAreaView } from 'react-native'
 import { useForm } from 'react-hook-form'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, StackActions } from '@react-navigation/native'
 
 import background from '@assets/images/background.png'
 import Logo from '@assets/images/logo.svg'
@@ -20,12 +20,17 @@ export function SignIn() {
     resolver: signInFormResolver
   })
 
-  function onSubmit(data: SignInFormData) {
-    console.log(data)
-  }
-
   function handleNavigateToSignUp() {
     navigation.navigate('signup')
+  }
+
+  function handleNavigateToHome() {
+    navigation.dispatch(StackActions.replace('home'))
+  }
+
+  function onSubmit(data: SignInFormData) {
+    console.log(data)
+    handleNavigateToHome()
   }
 
   return (
