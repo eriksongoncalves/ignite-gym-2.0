@@ -7,6 +7,7 @@ import ArrowRightIcon from '@assets/images/arrow-right.svg'
 
 import { Button } from '@components/Button'
 import { FilterItem } from '@components/FilterItem'
+import { useAuth } from '@hooks/auth'
 
 const exercisesCategoriesList = [
   'COSTAS',
@@ -52,6 +53,7 @@ const exercisesList = [
 
 export function Home() {
   const navigation = useNavigation()
+  const { user, signOut } = useAuth()
 
   const [filterSelected, setFilterSelected] = useState('COSTAS')
 
@@ -72,12 +74,12 @@ export function Home() {
               Olá,
             </Text>
             <Text className="font-robotoBold text-base text-white">
-              Erikson Gonçalves
+              {user?.name}
             </Text>
           </View>
         </View>
         <View>
-          <Button variant="link" onPress={() => {}}>
+          <Button variant="link" onPress={signOut}>
             <LogoutIcon width={24} height={24} />
           </Button>
         </View>

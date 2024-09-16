@@ -1,34 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useAuth } from '@hooks/auth'
 
-import { SignIn } from '@src/screens/SignIn'
-import { SignUp } from '@src/screens/SignUp'
-import { Home } from '@src/screens/Home'
+import { AppTabRoutes } from './app.tab.routes'
+import { AuthStackRoutes } from './auth.stack.routes'
 
-const Stack = createNativeStackNavigator()
+export function Routes() {
+  const { user } = useAuth()
 
-function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="signin"
-          component={SignIn}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="signup"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {user?.id ? <AppTabRoutes /> : <AuthStackRoutes />}
     </NavigationContainer>
   )
 }
-
-export default Routes

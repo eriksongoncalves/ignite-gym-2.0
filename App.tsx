@@ -9,7 +9,8 @@ import {
   Roboto_700Bold
 } from '@expo-google-fonts/roboto'
 
-import Routes from '@src/routes'
+import { Routes } from '@src/routes'
+import { AuthProvider } from '@src/hooks/auth'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -32,8 +33,9 @@ export default function App() {
   return (
     <GestureHandlerRootView onLayout={onLayoutRootView} className="flex-1">
       <StatusBar translucent barStyle={'light-content'} />
-
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </GestureHandlerRootView>
   )
 }
