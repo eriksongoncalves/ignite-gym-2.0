@@ -1,14 +1,54 @@
 import { useState } from 'react'
-import { Text, View, Image } from 'react-native'
-
+import { Text, View, Image, FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import LogoutIcon from '@assets/images/logout.svg'
+import ArrowRightIcon from '@assets/images/arrow-right.svg'
+
 import { Button } from '@components/Button'
 import { FilterItem } from '@components/FilterItem'
-import { FlatList } from 'react-native-gesture-handler'
 
-const exercisesList = ['COSTAS', 'BÍCEPS', 'TRÍCEPS', 'OMBRO', 'PERNA']
+const exercisesCategoriesList = [
+  'COSTAS',
+  'BÍCEPS',
+  'TRÍCEPS',
+  'OMBRO',
+  'PERNA'
+]
+
+const exercisesList = [
+  {
+    id: '1',
+    image:
+      'https://pratiquefitness.com.br/blog/wp-content/uploads/2023/07/Exercicio-puxada-beneficios-variacoes-e-como-fazer-2.jpg',
+    title: 'Puxada frontal',
+    series: 3,
+    repetitions: 12
+  },
+  {
+    id: '2',
+    image:
+      'https://blog.ciaathletica.com.br/wp-content/uploads/2023/05/Cia-Athletica-Remada-curvada-Autores-Grupo-S2-Marketing-Freepik.jpg',
+    title: 'Remada curvada',
+    series: 2,
+    repetitions: 12
+  },
+  {
+    id: '3',
+    image: 'https://www.origym.com.br/banners/remada-unilateral.jpg',
+    title: 'Remada unilateral',
+    series: 3,
+    repetitions: 12
+  },
+  {
+    id: '4',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo75Y5bklVLecBJglEmP3wPmx3cbCm23m0EQ&s',
+    title: 'Levantamento terra',
+    series: 3,
+    repetitions: 12
+  }
+]
 
 export function Home() {
   const navigation = useNavigation()
@@ -17,6 +57,7 @@ export function Home() {
 
   return (
     <View className="flex-1 bg-gray-700">
+      {/* HEADER */}
       <View className="h-[148px] flex-row items-center bg-gray-600 pl-8 pr-8 pt-5">
         <View className="flex-1 flex-row items-center">
           <Image
@@ -42,12 +83,13 @@ export function Home() {
         </View>
       </View>
 
+      {/* FILTERS CATEGORIES */}
       <View>
         <FlatList
           className="ml-8 mt-10"
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={exercisesList}
+          data={exercisesCategoriesList}
           keyExtractor={item => item}
           renderItem={({ item }) => (
             <View className="mr-3">
@@ -56,6 +98,48 @@ export function Home() {
                 selected={filterSelected === item}
                 onPress={() => setFilterSelected(item)}
               />
+            </View>
+          )}
+        />
+      </View>
+
+      <View className="mt-10 flex-row items-center justify-between pl-8 pr-8">
+        <Text className="font-robotoBold text-base text-gray-200">
+          Exercícios
+        </Text>
+        <Text className="font-robotoRegular text-sm text-gray-200">4</Text>
+      </View>
+
+      <View className="mt-3 flex-1 pl-8 pr-8">
+        <FlatList
+          className="flex-1"
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          data={exercisesList}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <View className="rounded-8 mb-3 flex-row items-center rounded bg-gray-500 p-2">
+              <Image
+                source={{ uri: item.image }}
+                width={67}
+                height={67}
+                className="mr-4 rounded-md"
+              />
+
+              <View className="mr-2 flex-1">
+                <Text className="font-robotoBold text-lg text-white">
+                  {item.title}
+                </Text>
+                <Text className="mt-2 font-robotoBold text-lg text-white">
+                  <Text className="font-robotoRegular text-sm text-gray-200">
+                    {item.series} séries {item.repetitions} repetições
+                  </Text>
+                </Text>
+              </View>
+
+              <Button variant="link">
+                <ArrowRightIcon width={9} height={16} />
+              </Button>
             </View>
           )}
         />
