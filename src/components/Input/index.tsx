@@ -1,7 +1,8 @@
 import { useState, forwardRef } from 'react'
 import { TextInput, TextInputProps, Text } from 'react-native'
 import { tv } from 'tailwind-variants'
-import colors from 'tailwindcss/colors'
+
+import theme from '@shared/tailwindConfig'
 
 const variants = tv({
   base: 'rounded-8 w-full rounded border border-gray-700 bg-gray-700 p-4 font-robotoRegular text-base text-gray-200',
@@ -52,7 +53,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             !!onBlur && onBlur(e)
             handleInputBlur()
           }}
-          placeholderTextColor={colors.gray['500']}
+          placeholderTextColor={theme.colors.gray['500']}
           {...rest}
           style={[
             rest?.style,

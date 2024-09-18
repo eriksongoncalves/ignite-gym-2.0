@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import colors from 'tailwindcss/colors'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import Entypo from '@expo/vector-icons/Entypo'
+import theme from '@shared/tailwindConfig'
 
-import { Home } from '@src/screens/Home'
+import { Home } from '@screens/Home'
+import { Historical } from '@screens/Historical'
 
 export type BottomTabParamListBase = {
   home_tab: undefined
@@ -21,14 +22,14 @@ export function AppTabRoutes() {
     <Navigator
       backBehavior="none"
       screenOptions={{
-        tabBarActiveTintColor: colors.green['500'],
-        tabBarInactiveTintColor: colors.gray['200'],
+        tabBarActiveTintColor: theme.colors.green['500'],
+        tabBarInactiveTintColor: theme.colors.gray['200'],
         tabBarShowLabel: false,
         tabBarStyle: {
           borderTopWidth: 0,
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
           height: 88,
-          backgroundColor: colors.gray['600']
+          backgroundColor: theme.colors.gray['600']
         }
       }}
     >
@@ -48,9 +49,23 @@ export function AppTabRoutes() {
       />
       <Screen
         name="historical_tab"
-        component={() => <></>}
+        component={Historical}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerTitle: 'Histórico de Exercícios',
+          headerTitleStyle: {
+            color: theme.colors.white,
+            fontFamily: 'Roboto_700Bold',
+            fontSize: 20
+          },
+          headerStyle: {
+            height: 124,
+            backgroundColor: theme.colors.gray['600'],
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0
+          },
           tabBarIcon: ({ color }) => (
             <Entypo name="back-in-time" size={24} color={color} />
           )
