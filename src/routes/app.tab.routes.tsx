@@ -8,6 +8,7 @@ import theme from '@shared/tailwindConfig'
 
 import { Home } from '@screens/Home'
 import { Historical } from '@screens/Historical'
+import { Profile } from '@screens/Profile'
 
 export type BottomTabParamListBase = {
   home_tab: undefined
@@ -73,9 +74,23 @@ export function AppTabRoutes() {
       />
       <Screen
         name="profile_tab"
-        component={() => <></>}
+        component={Profile}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerTitle: 'Perfil',
+          headerTitleStyle: {
+            color: theme.colors.white,
+            fontFamily: 'Roboto_700Bold',
+            fontSize: 20
+          },
+          headerStyle: {
+            height: 124,
+            backgroundColor: theme.colors.gray['600'],
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0
+          },
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="user-circle" size={24} color={color} />
           )

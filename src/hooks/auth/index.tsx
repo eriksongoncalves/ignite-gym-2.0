@@ -86,6 +86,18 @@ const AuthProvider = ({ children }: types.AuthProviderProps) => {
     }
   }
 
+  const updateProfile = async (data: types.UpdateProfileInput) => {
+    try {
+      setLoading(true)
+      // eslint-disable-next-line no-console
+      console.log('>>> data', data)
+    } catch (error) {
+      throw new Error('Ocorreu um erro ao tentar se cadastrar')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     async function loadUserData() {
       try {
@@ -107,7 +119,15 @@ const AuthProvider = ({ children }: types.AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, signIn, signOut, signUp, forgotPassword }}
+      value={{
+        user,
+        loading,
+        signIn,
+        signOut,
+        signUp,
+        forgotPassword,
+        updateProfile
+      }}
     >
       {children}
     </AuthContext.Provider>

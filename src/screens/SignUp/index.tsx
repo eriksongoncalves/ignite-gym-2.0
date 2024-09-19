@@ -5,8 +5,7 @@ import {
   SafeAreaView,
   Alert,
   TouchableWithoutFeedback,
-  Keyboard,
-  ScrollView
+  Keyboard
 } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { useNavigation } from '@react-navigation/native'

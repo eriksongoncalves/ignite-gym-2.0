@@ -5,7 +5,7 @@ import { tv } from 'tailwind-variants'
 import theme from '@shared/tailwindConfig'
 
 const variants = tv({
-  base: 'rounded-8 w-full rounded border border-gray-700 bg-gray-700 p-4 font-robotoRegular text-base text-gray-200',
+  base: 'rounded-8 w-full rounded border border-gray-600 bg-gray-600 p-4 font-robotoRegular text-base text-gray-200',
   variants: {
     error: {
       true: 'border-red-600'
@@ -53,7 +53,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             !!onBlur && onBlur(e)
             handleInputBlur()
           }}
-          placeholderTextColor={theme.colors.gray['500']}
+          placeholderTextColor={theme.colors.gray['300']}
           {...rest}
           style={[
             rest?.style,
