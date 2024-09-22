@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Text, View, Image, FlatList } from 'react-native'
+import { Text, View, Image, FlatList, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import LogoutIcon from '@assets/images/logout.svg'
@@ -54,22 +54,23 @@ const exercisesList = [
 export function Home() {
   const navigation = useNavigation()
   const { user, signOut } = useAuth()
+  const statusBarHeight = StatusBar.currentHeight?.toFixed() || 0
 
   const [filterSelected, setFilterSelected] = useState('COSTAS')
 
   return (
-    <View className="flex-1 bg-gray-700">
+    <View className={`mt-[${statusBarHeight}] flex-1 bg-gray-700`}>
       {/* HEADER */}
-      <View className="h-[148px] flex-row items-center bg-gray-600 pl-8 pr-8 pt-5">
+      <View className="flex-row items-center bg-gray-600 pb-5 pl-8 pr-8 pt-5">
         <View className="flex-1 flex-row items-center">
           <Image
             source={{
               uri: 'https://avatars.githubusercontent.com/u/13559274?s=96&v=4'
             }}
-            className="mr-4 h-[64px] w-[64px] rounded-full border border-gray-400"
+            className="mr-4 h-16 w-16 rounded-full border-2 border-gray-400"
           />
 
-          <View className="flex">
+          <View>
             <Text className="font-robotoRegular text-base text-white">
               Olá,
             </Text>
@@ -120,7 +121,7 @@ export function Home() {
           data={exercisesList}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <View className="rounded-8 mb-3 flex-row items-center rounded bg-gray-500 p-2">
+            <View className="rounded-8 mb-3 flex-row items-center rounded bg-gray-500 p-2 pr-5">
               <Image
                 source={{ uri: item.image }}
                 width={67}

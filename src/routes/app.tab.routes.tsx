@@ -29,7 +29,7 @@ export function AppTabRoutes() {
         tabBarStyle: {
           borderTopWidth: 0,
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 88,
+          height: 70,
           backgroundColor: theme.colors.gray['600']
         }
       }}

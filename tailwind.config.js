@@ -7,12 +7,12 @@ module.exports = {
       robotoBold: ['Roboto_700Bold']
     },
     fontSize: {
-      base: '16px',
-      xs: '12px',
-      sm: '14px',
-      lg: '18px',
-      xl: '20x',
-      '2xl': '24px'
+      base: 16,
+      xs: 12,
+      sm: 14,
+      lg: 18,
+      xl: 20,
+      '2xl': 24
     },
     colors: {
       transparent: 'transparent',

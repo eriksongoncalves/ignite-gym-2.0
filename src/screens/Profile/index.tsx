@@ -2,7 +2,6 @@ import { useState } from 'react'
 import {
   View,
   Image,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
   Text,
@@ -104,7 +103,6 @@ export function Profile() {
           <View className="pl-8 pr-8">
             <Input
               {...register('name')}
-              autoFocus
               placeholder="Nome"
               className="mb-4"
               onChangeText={value => setValue('name', value)}
