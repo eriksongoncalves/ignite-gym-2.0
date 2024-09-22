@@ -79,75 +79,77 @@ export function Profile() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} className="flex-1">
-      <ScrollView className="flex-1" bounces={false}>
-        <View className="flex-1 bg-gray-700 pb-10">
-          {/* FOTO */}
-          <View className="mb-9 mt-6 w-full items-center">
-            <Image
-              source={{
-                uri:
-                  profilePicture?.uri ||
-                  'https://avatars.githubusercontent.com/u/13559274?s=150&v=4'
-              }}
-              className="mb-3 h-[148px] w-[148px] rounded-full border-2 border-gray-400"
-            />
-            <Button variant="link" onPress={handleSelectPicture}>
-              <Text className="font-robotoBold text-base text-green-500">
-                Alterar foto
+    <View className="flex-1 bg-gray-700">
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} className="flex-1">
+        <ScrollView className="flex-1" bounces={false}>
+          <View className="flex-1 pb-10">
+            {/* FOTO */}
+            <View className="mb-9 mt-6 w-full items-center">
+              <Image
+                source={{
+                  uri:
+                    profilePicture?.uri ||
+                    'https://avatars.githubusercontent.com/u/13559274?s=150&v=4'
+                }}
+                className="mb-3 h-[148px] w-[148px] rounded-full border-2 border-gray-400"
+              />
+              <Button variant="link" onPress={handleSelectPicture}>
+                <Text className="font-robotoBold text-base text-green-500">
+                  Alterar foto
+                </Text>
+              </Button>
+            </View>
+
+            {/* FORM */}
+            <View className="pl-8 pr-8">
+              <Input
+                {...register('name')}
+                placeholder="Nome"
+                className="mb-4"
+                onChangeText={value => setValue('name', value)}
+                errorMessage={errors.name?.message}
+              />
+
+              <Input
+                {...register('email')}
+                placeholder="E-mail"
+                keyboardType="email-address"
+                className="mb-12"
+                onChangeText={value => setValue('email', value)}
+                errorMessage={errors.email?.message}
+              />
+
+              <Text className="mb-2 font-robotoBold text-base text-gray-200">
+                Alterar senha
               </Text>
-            </Button>
+
+              <Input
+                {...register('old_password')}
+                placeholder="Senha antiga"
+                className="mb-4"
+                secureTextEntry
+                onChangeText={value => setValue('old_password', value)}
+                errorMessage={errors.old_password?.message}
+              />
+
+              <Input
+                {...register('new_password')}
+                placeholder="Nova senha"
+                className="mb-8"
+                secureTextEntry
+                onChangeText={value => setValue('new_password', value)}
+                errorMessage={errors.new_password?.message}
+              />
+
+              <Button onPress={handleSubmit(onSubmit)} disabled={loading}>
+                <Text className="font-robotoBold text-base text-white">
+                  Atualizar
+                </Text>
+              </Button>
+            </View>
           </View>
-
-          {/* FORM */}
-          <View className="pl-8 pr-8">
-            <Input
-              {...register('name')}
-              placeholder="Nome"
-              className="mb-4"
-              onChangeText={value => setValue('name', value)}
-              errorMessage={errors.name?.message}
-            />
-
-            <Input
-              {...register('email')}
-              placeholder="E-mail"
-              keyboardType="email-address"
-              className="mb-12"
-              onChangeText={value => setValue('email', value)}
-              errorMessage={errors.email?.message}
-            />
-
-            <Text className="mb-2 font-robotoBold text-base text-gray-200">
-              Alterar senha
-            </Text>
-
-            <Input
-              {...register('old_password')}
-              placeholder="Senha antiga"
-              className="mb-4"
-              secureTextEntry
-              onChangeText={value => setValue('old_password', value)}
-              errorMessage={errors.old_password?.message}
-            />
-
-            <Input
-              {...register('new_password')}
-              placeholder="Nova senha"
-              className="mb-8"
-              secureTextEntry
-              onChangeText={value => setValue('new_password', value)}
-              errorMessage={errors.new_password?.message}
-            />
-
-            <Button onPress={handleSubmit(onSubmit)} disabled={loading}>
-              <Text className="font-robotoBold text-base text-white">
-                Atualizar
-              </Text>
-            </Button>
-          </View>
-        </View>
-      </ScrollView>
-    </TouchableWithoutFeedback>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </View>
   )
 }

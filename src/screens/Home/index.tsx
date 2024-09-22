@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Text, View, Image, FlatList, StatusBar } from 'react-native'
+import { Text, View, Image, FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import LogoutIcon from '@assets/images/logout.svg'
@@ -8,6 +8,7 @@ import ArrowRightIcon from '@assets/images/arrow-right.svg'
 import { Button } from '@components/Button'
 import { FilterItem } from '@components/FilterItem'
 import { useAuth } from '@hooks/auth'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const exercisesCategoriesList = [
   'COSTAS',
@@ -54,99 +55,103 @@ const exercisesList = [
 export function Home() {
   const navigation = useNavigation()
   const { user, signOut } = useAuth()
-  const statusBarHeight = StatusBar.currentHeight?.toFixed() || 0
 
   const [filterSelected, setFilterSelected] = useState('COSTAS')
 
   return (
-    <View className={`mt-[${statusBarHeight}] flex-1 bg-gray-700`}>
-      {/* HEADER */}
-      <View className="flex-row items-center bg-gray-600 pb-5 pl-8 pr-8 pt-5">
-        <View className="flex-1 flex-row items-center">
-          <Image
-            source={{
-              uri: 'https://avatars.githubusercontent.com/u/13559274?s=96&v=4'
-            }}
-            className="mr-4 h-16 w-16 rounded-full border-2 border-gray-400"
-          />
+    <View className="flex-1 bg-gray-700">
+      <SafeAreaView className="flex-1">
+        {/* HEADER */}
+        <View className="flex-row items-center bg-gray-600 pb-5 pl-8 pr-8 pt-5">
+          <View className="flex-1 flex-row items-center">
+            <Image
+              source={{
+                uri: 'https://avatars.githubusercontent.com/u/13559274?s=96&v=4'
+              }}
+              className="mr-4 h-16 w-16 rounded-full border-2 border-gray-400"
+            />
 
+            <View>
+              <Text className="font-robotoRegular text-base text-white">
+                Olá,
+              </Text>
+              <Text className="font-robotoBold text-base text-white">
+                {user?.name}
+              </Text>
+            </View>
+          </View>
           <View>
-            <Text className="font-robotoRegular text-base text-white">
-              Olá,
-            </Text>
-            <Text className="font-robotoBold text-base text-white">
-              {user?.name}
-            </Text>
+            <Button variant="link" onPress={signOut}>
+              <LogoutIcon width={24} height={24} />
+            </Button>
           </View>
         </View>
+
+        {/* FILTERS CATEGORIES */}
         <View>
-          <Button variant="link" onPress={signOut}>
-            <LogoutIcon width={24} height={24} />
-          </Button>
-        </View>
-      </View>
-
-      {/* FILTERS CATEGORIES */}
-      <View>
-        <FlatList
-          className="ml-8 mt-10"
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={exercisesCategoriesList}
-          keyExtractor={item => item}
-          renderItem={({ item }) => (
-            <View className="mr-3">
-              <FilterItem
-                text={item}
-                selected={filterSelected === item}
-                onPress={() => setFilterSelected(item)}
-              />
-            </View>
-          )}
-        />
-      </View>
-
-      <View className="mt-10 flex-row items-center justify-between pl-8 pr-8">
-        <Text className="font-robotoBold text-base text-gray-200">
-          Exercícios
-        </Text>
-        <Text className="font-robotoRegular text-sm text-gray-200">4</Text>
-      </View>
-
-      <View className="mt-3 flex-1 pl-8 pr-8">
-        <FlatList
-          className="flex-1"
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-          data={exercisesList}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <View className="rounded-8 mb-3 flex-row items-center rounded bg-gray-500 p-2 pr-5">
-              <Image
-                source={{ uri: item.image }}
-                width={67}
-                height={67}
-                className="mr-4 rounded-md"
-              />
-
-              <View className="mr-2 flex-1">
-                <Text className="font-robotoBold text-lg text-white">
-                  {item.title}
-                </Text>
-                <Text className="mt-2 font-robotoBold text-lg text-white">
-                  <Text className="font-robotoRegular text-sm text-gray-200">
-                    {item.series} séries {item.repetitions} repetições
-                  </Text>
-                </Text>
+          <FlatList
+            className="ml-8 mt-10"
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={exercisesCategoriesList}
+            keyExtractor={item => item}
+            renderItem={({ item }) => (
+              <View className="mr-3">
+                <FilterItem
+                  text={item}
+                  selected={filterSelected === item}
+                  onPress={() => setFilterSelected(item)}
+                />
               </View>
+            )}
+          />
+        </View>
 
-              <Button variant="link">
-                <ArrowRightIcon width={9} height={16} />
+        <View className="mt-10 flex-row items-center justify-between pl-8 pr-8">
+          <Text className="font-robotoBold text-base text-gray-200">
+            Exercícios
+          </Text>
+          <Text className="font-robotoRegular text-sm text-gray-200">4</Text>
+        </View>
+
+        <View className="mt-3 flex-1 pl-8 pr-8">
+          <FlatList
+            className="flex-1"
+            bounces={false}
+            showsVerticalScrollIndicator={false}
+            data={exercisesList}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => (
+              <Button
+                variant="link"
+                onPress={() => navigation.navigate('exercise')}
+              >
+                <View className="rounded-8 mb-3 flex-row items-center rounded bg-gray-500 p-2 pr-5">
+                  <Image
+                    source={{ uri: item.image }}
+                    width={67}
+                    height={67}
+                    className="mr-4 rounded-md"
+                  />
+
+                  <View className="mr-2 flex-1">
+                    <Text className="font-robotoBold text-lg text-white">
+                      {item.title}
+                    </Text>
+                    <Text className="mt-2 font-robotoBold text-lg text-white">
+                      <Text className="font-robotoRegular text-sm text-gray-200">
+                        {item.series} séries {item.repetitions} repetições
+                      </Text>
+                    </Text>
+                  </View>
+
+                  <ArrowRightIcon width={9} height={16} />
+                </View>
               </Button>
-            </View>
-          )}
-        />
-      </View>
+            )}
+          />
+        </View>
+      </SafeAreaView>
     </View>
   )
 }

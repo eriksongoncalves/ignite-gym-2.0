@@ -9,11 +9,13 @@ import theme from '@shared/tailwindConfig'
 import { Home } from '@screens/Home'
 import { Historical } from '@screens/Historical'
 import { Profile } from '@screens/Profile'
+import { Exercise } from '@screens/Exercise'
 
 export type BottomTabParamListBase = {
   home_tab: undefined
   historical_tab: undefined
   profile_tab: undefined
+  exercise: undefined
 }
 
 const { Navigator, Screen } = createBottomTabNavigator<BottomTabParamListBase>()
@@ -29,7 +31,7 @@ export function AppTabRoutes() {
         tabBarStyle: {
           borderTopWidth: 0,
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 70,
+          height: Platform.OS === 'ios' ? 88 : 60,
           backgroundColor: theme.colors.gray['600']
         }
       }}
@@ -94,6 +96,15 @@ export function AppTabRoutes() {
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="user-circle" size={24} color={color} />
           )
+        }}
+      />
+
+      <Screen
+        name="exercise"
+        component={Exercise}
+        options={{
+          headerShown: false,
+          tabBarButton: () => null
         }}
       />
     </Navigator>
