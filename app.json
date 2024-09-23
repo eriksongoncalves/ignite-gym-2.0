@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ignite-gym",
-    "slug": "ignite-gym",
-    "scheme": "ignite-gym",
+    "name": "igniteGym",
+    "slug": "igniteGym",
+    "scheme": "ignitegym",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,14 +13,16 @@
       "backgroundColor": "#121214"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.teste.igniteGym"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#121214"
-      }
+      },
+      "package": "com.teste.igniteGym"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +34,12 @@
         "expo-image-picker",
         {
           "photosPermission": "O app precisa acessar as suas fotos."
+        }
+      ],
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development"
         }
       ]
     ]
