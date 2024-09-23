@@ -1,7 +1,8 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-  EXPO_PUBLIC_ONE_SIGNAL_API_KEY: z.string()
+  EXPO_PUBLIC_ONE_SIGNAL_API_KEY: z.string(),
+  SENTRY_DSN: z.string()
 })
 
 // eslint-disable-next-line no-underscore-dangle

@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { OneSignal } from 'react-native-onesignal'
+import * as Sentry from '@sentry/react-native'
 
 import {
   useFonts,
@@ -16,10 +17,18 @@ import { env } from '@shared/config/env'
 
 SplashScreen.preventAutoHideAsync()
 
+Sentry.init({
+  dsn: env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  _experiments: {
+    profilesSampleRate: 1.0
+  }
+})
+
 OneSignal.initialize(env.EXPO_PUBLIC_ONE_SIGNAL_API_KEY)
 OneSignal.Notifications.requestPermission(true)
 
-export default function App() {
+function App() {
   const [fontsLoaded, error] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
@@ -44,3 +53,5 @@ export default function App() {
     </GestureHandlerRootView>
   )
 }
+
+export default Sentry.wrap(App)
