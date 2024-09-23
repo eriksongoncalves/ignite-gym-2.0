@@ -1,5 +1,5 @@
 {
-  "name": "ignite-gym-2.0",
+  "name": "ignitegym",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {

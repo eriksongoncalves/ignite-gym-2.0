@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "igniteGym",
-    "slug": "igniteGym",
+    "name": "ignitegym",
+    "slug": "ignitegym",
     "scheme": "ignitegym",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.teste.igniteGym"
+      "bundleIdentifier": "com.teste.ignitegym"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#121214"
       },
-      "package": "com.teste.igniteGym"
+      "package": "com.teste.ignitegym"
     },
     "web": {
       "favicon": "./assets/favicon.png"

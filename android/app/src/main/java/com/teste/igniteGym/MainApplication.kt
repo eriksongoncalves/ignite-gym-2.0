@@ -1,4 +1,4 @@
-package com.teste.igniteGym
+package com.teste.ignitegym
 
 import android.app.Application
 import android.content.res.Configuration

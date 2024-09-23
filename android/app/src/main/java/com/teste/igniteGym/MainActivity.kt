@@ -1,4 +1,4 @@
-package com.teste.igniteGym
+package com.teste.ignitegym
 
 import android.os.Build
 import android.os.Bundle

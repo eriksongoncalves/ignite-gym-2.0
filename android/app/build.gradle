@@ -109,9 +109,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.teste.igniteGym'
+    namespace 'com.teste.ignitegym'
     defaultConfig {
-        applicationId 'com.teste.igniteGym'
+        applicationId 'com.teste.ignitegym'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
